@@ -48,7 +48,6 @@ public class L13Array {
 		System.out.println(max_i+":"+max);
 		//최소값을 찾으세요
 		//최대값을 맨앞으로 옮겨서 정렬하세요 (선택 정렬)
-		
 		String [] weeks=new String[7];
 		weeks[0]="월요일";
 		weeks[1]="화요일";
@@ -57,9 +56,7 @@ public class L13Array {
 		weeks[4]="금요일";
 		weeks[5]="토요일";
 		weeks[6]="일요일";
-		String [] weeks2= {"월","화","수","목","금","토","일"};
-		
-	
+		String [] weeks2= {"월","화","수","목","금","토","일"};	
 	}
 }
 
