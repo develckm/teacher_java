@@ -1,8 +1,8 @@
 package com.econ;
 class StringParseInt{
 	char [] c_num= {'9','a','1','2'}; //912 기대하고 있는데  "9a12"가 포함된 문자열
-	StringParseInt(String nums){
-		//nums=>this.c_num 변형 대입  
+	public StringParseInt(String nums){ //"91a12"=>9112
+		//nums=>this.c_1num 변형 대입  
 	}
 	public boolean checkInt() { //정수의 문자열인지 체크
 		return false;
@@ -13,10 +13,8 @@ class StringParseInt{
 		return pars_c;
 	}
 }
-
-
 public class L17Break {
-	public static void main(String[]args) {
+	public static void main(String[]args) {		
 		char [] c_num= {'9','a','1','2'}; 
 		String s_num="";
 		for(int i=0; i<c_num.length; i++) {
