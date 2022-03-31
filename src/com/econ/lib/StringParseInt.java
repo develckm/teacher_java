@@ -48,9 +48,7 @@ public class StringParseInt {
 		}
 		return check_str_num;
 	}
-}
 
-class TestJRE{
 	public static void main(String[]args) {
 		//const arr=new Array(1,2,3);
 		//const arr=[1,2,3];		
