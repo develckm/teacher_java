@@ -19,5 +19,7 @@ public class L20MethodReturn {
 	}
 	public static void main(String[]args) {
 		System.out.println(L20MethodReturn.concat(' ','d'));
+		Integer.parseInt("10");
+		
 	}
 }
