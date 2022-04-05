@@ -37,8 +37,9 @@ public class L33Instanceof {
 		//System.out.println( 10 instanceof int);
 		System.out.println(new Integer(10) instanceof Integer);
 		
+		byte b=(byte)200;
 		
-		Object obj_c=new Child();
+		Object obj_c=(Object)new Child();
 		Object obj_str=new String("¾È³ç");
 		Object obj_str2="¾È³ç";
 		Object obj_int=10;
