@@ -35,6 +35,5 @@ public class L43Math {
 		System.out.println("//////////Math.random()//////////////");
 		System.out.println(Math.random());//0~1사이 실수
 		System.out.println((int)(Math.random()*3)+1);//(int)(Math.random()*(원하는 수))+1  
-		
 	}
 }
