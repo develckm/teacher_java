@@ -11,14 +11,14 @@ class CardGameFrame extends JFrame{
 	Card[] cards=new Card[12];
 	Integer [] cards_nums= {1,1,2,2,3,3,4,4,5,5,6,6};		
 	JFrame f=this;
-	public CardGameFrame(String title) {
+	public CardGameFrame(String title) throws InterruptedException {
 		super(title);
 		randomCards();
 		//Card 버튼 12개를 flame에 붙이기
 		for(Card c :cards) {
 			add(c);
 		}
-		new Thread(new Runnable() {			
+		Thread t1=new Thread(new Runnable() {			
 			@Override
 			public void run() {
 				for(Card c :cards) {
@@ -31,12 +31,11 @@ class CardGameFrame extends JFrame{
 					f.validate();
 				}
 			}
-		}).start();
-		new Thread(new Runnable() {			
+		});
+		Thread t2=new Thread(new Runnable() {			
 			@Override
 			public void run() {
 				try {
-					Thread.sleep(6000);
 					for(Card c :cards) {
 							Thread.sleep(500);
 						c.setText("");
@@ -46,11 +45,14 @@ class CardGameFrame extends JFrame{
 					e.printStackTrace();
 				}
 			}
-		}).start();
+		});
 		this.setLayout(new GridLayout(3,4));
 		this.setBounds(600,100,600,800);
 		this.setVisible(true);
 		this.validate();//새로고침
+		t1.start();
+		t1.join();	
+		t2.start();
 	}
 	public void randomCards() {
 		LinkedList<Integer> card_list=new LinkedList<Integer>(Arrays.asList(cards_nums));
@@ -69,6 +71,11 @@ class Card extends JButton{
 }
 public class L06CardGame{
 	public static void main(String[]args) {		
-		new CardGameFrame("카드게임");
+		try {
+			new CardGameFrame("카드게임");
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }
