@@ -7,6 +7,7 @@
 		<item key="WizardProjectsImportPage.STORE_CLOSE_CREATED_PROJECTS_ID" value="false"/>
 		<item key="WizardProjectsImportPage.STORE_HIDE_CONFLICTING_PROJECTS_ID" value="false"/>
 		<list key="WizardProjectsImportPage.STORE_DIRECTORIES">
+			<item value="C:\Users\pc\Desktop\big_data_20220125\teacher_java"/>
 			<item value="/Users/choegyeongmin/Documents/bigdata_study/java_study"/>
 		</list>
 		<list key="WizardProjectsImportPage.STORE_ARCHIVES">
