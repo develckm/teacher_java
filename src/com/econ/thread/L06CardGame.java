@@ -81,7 +81,6 @@ class CardGameFrame extends JFrame{
 						click_cards.remove(1);
 						click_cards.remove(0);						
 					}
-
 				}
 			}
 		});

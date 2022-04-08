@@ -37,15 +37,7 @@ class RSPGame extends JFrame{
 		sb.addActionListener(new GameButtonHandler());
 		rb.addActionListener(new GameButtonHandler());
 		pb.addActionListener(new GameButtonHandler());
-		startb.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				start_game=true;
-				Thread t=new Thread(new EnemyRandom());
-				t.start();
-
-			}
-		});
+		startb.addActionListener(new StartButtonHandeler());
 		p3.add(sb);
 		p3.add(rb);
 		p3.add(pb);
@@ -60,12 +52,24 @@ class RSPGame extends JFrame{
 		this.setVisible(true);
 		this.addWindowListener(new WindowHandler());
 	}
+	class StartButtonHandeler implements ActionListener{
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			if(!start_game) {
+				start_game=true;
+				Thread t=new Thread(new EnemyRandom());
+				t.start();					
+			}
+		}
+	}
 	class GameButtonHandler implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			//js 에서 e.target과 동일
 			GameButton b=((GameButton)e.getSource());
-			System.out.println(b.num+"vs"+select_enemy);
+			String msg= (b.num-select_enemy == 1 || b.num-select_enemy==-2 )?"승리" :
+						(b.num-select_enemy==0)?"무승부":"패배" ;
+			resultL.setText(b.getText()+" vs "+enemy_arr[select_enemy]+" : "+msg);
 			start_game=false;
 		}
 	}
