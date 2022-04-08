@@ -1,5 +1,6 @@
 package com.econ.thread;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -10,8 +11,11 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Random;
 
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 interface CardColor{
 	Color FRONT=new Color(240, 245, 255);
 	Color FRONT_TEXT=new Color(15, 15, 25);
@@ -25,35 +29,49 @@ interface CardColor{
 	Color SUCCESS_TEXT=new Color(15, 115, 25);	
 }
 class CardGameFrame extends JFrame{
+	int time=30;
+	int score=0;
+	JPanel resultP=new JPanel();
+	JPanel buttonP=new JPanel();
+	
+	JLabel timeL=new JLabel(time+"초");
+	JLabel scoreL=new JLabel(score+"점");
 	Card[] cards=new Card[12];
 	Integer [] cards_nums= {1,1,2,2,3,3,4,4,5,5,6,6};	
 	LinkedList<Card> click_cards=new LinkedList<Card>();
 	JFrame f=this;
 	public CardGameFrame(String title) throws InterruptedException {
 		super(title);
-		randomCards();
-		//Card 버튼 12개를 flame에 붙이기
+		randomCards(); //카드 섞고 버튼객체 만들기 
+		//Card 버튼 12개를 버튼 패널에 붙이기
 		for(Card c :cards) {
-			add(c);
+			buttonP.add(c);
 		}
-		Thread t1=new ShowCard();
-		Thread t2=new HideCard();
-		Thread t3=new CheckSucces();
-		
-		this.setLayout(new GridLayout(3,4,20,10));
+		this.setLayout(new BorderLayout());//y축으로 1칸씩 정렬되는 레이아웃 
+		buttonP.setLayout(new GridLayout(3,4,20,10));//그리드로 정렬되는 레이아웃
+		resultP.add(timeL);
+		resultP.add(scoreL);
+		this.add(resultP,BorderLayout.NORTH);
+		this.add(buttonP,BorderLayout.CENTER);
 		this.setBounds(600,100,600,800);
 		this.setVisible(true);
 		this.validate();//새로고침
-		this.addWindowListener(new WindowAdapter() {
-			public void windowClosing(WindowEvent e) {f.dispose();}
-			public void windowClosed(WindowEvent e) {System.exit(0);}
-		});
+		this.addWindowListener(new WindowHandler());
+
+		
+		Thread t1=new ShowCard();
+		Thread t2=new HideCard();
+		Thread t3=new CheckSucces();
 		t1.start(); //화면에 카드 출력
 		t1.join();	
 		t2.start(); //화면에 출력된 카드 뒤집기
 		t2.join();
 		setCardAction(); //카드를 누를 수 있도록 액션 등록하기
 		t3.start(); //0.5초동안 무한히 뒤집어진 2개의 카드가 옳바른지 검사하기 
+	}
+	class WindowHandler extends WindowAdapter{
+		public void windowClosing(WindowEvent e) {f.dispose();}
+		public void windowClosed(WindowEvent e) {System.exit(0);}
 	}
 	//처음 시작하면 화면에 카드 보이게 하는 스레드
 	class ShowCard extends Thread{
@@ -75,7 +93,7 @@ class CardGameFrame extends JFrame{
 	class HideCard extends Thread{
 		@Override
 		public void run() {
-			try {Thread.sleep(5000);} catch (InterruptedException e) {e.printStackTrace();}	
+			try {Thread.sleep(3000);} catch (InterruptedException e) {e.printStackTrace();}	
 			for(Card c :cards) {
 				try {Thread.sleep(100);} catch (InterruptedException e) {e.printStackTrace();}
 				c.setBackground(CardColor.BACK); 
