@@ -13,7 +13,11 @@ import javax.swing.JFrame;
 class CardGameFrame extends JFrame{
 	Card[] cards=new Card[12];
 	Integer [] cards_nums= {1,1,2,2,3,3,4,4,5,5,6,6};
+	
+	
+	
 	LinkedList<Card> click_cards=new LinkedList<Card>();
+	
 	JFrame f=this;
 	public CardGameFrame(String title) throws InterruptedException {
 		super(title);
