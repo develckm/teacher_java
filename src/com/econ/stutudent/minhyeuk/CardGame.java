@@ -1,4 +1,4 @@
-package com.econ.student;
+package com.econ.stutudent.minhyeuk;
 import java.awt.*;
 import java.awt.event.*;
 import java.time.LocalTime;
